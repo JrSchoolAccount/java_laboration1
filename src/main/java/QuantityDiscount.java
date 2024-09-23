@@ -5,12 +5,12 @@ public class QuantityDiscount extends BaseDiscount{
 
     @Override
     protected boolean isApplicable(Product product) {
-        return false;
+        return product.quantity() > 10;
     }
 
     @Override
     protected double calculateDiscount(Product product) {
-        return 0;
+        return product.quantity() * 0.4;
     }
 
     @Override
@@ -22,6 +22,6 @@ public class QuantityDiscount extends BaseDiscount{
     @Override
     public String getDescription(Product product) {
 
-        return null;
+        return "Quantity Discount";
     }
 }
