@@ -1,5 +1,5 @@
 public interface Discount {
-    public void apply(Product product);
+    public double apply(Product product);
 
-    public void getDescription(Product product);
+    public String getDescription(Product product);
 }

@@ -1,4 +1,8 @@
 public class FridayDiscount extends BaseDiscount {
+    public FridayDiscount(Discount nextDiscount) {
+        super(nextDiscount);
+    }
+
     @Override
     protected boolean isApplicable(Product product) {
         return false;
@@ -10,12 +14,14 @@ public class FridayDiscount extends BaseDiscount {
     }
 
     @Override
-    public void apply(Product product) {
+    public double apply(Product product) {
 
+        return 0;
     }
 
     @Override
-    public void getDescription(Product product) {
+    public String getDescription(Product product) {
 
+        return null;
     }
 }
