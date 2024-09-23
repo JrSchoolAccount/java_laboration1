@@ -5,12 +5,12 @@ public class MilkDiscount extends BaseDiscount{
 
     @Override
     protected boolean isApplicable(Product product) {
-        return false;
+        return product.type() == ProductType.MILK;
     }
 
     @Override
     protected double calculateDiscount(Product product) {
-        return 0;
+        return product.price() * 0.05;
     }
 
     @Override
@@ -22,6 +22,6 @@ public class MilkDiscount extends BaseDiscount{
     @Override
     public String getDescription(Product product) {
 
-        return null;
+        return "Milk Discount";
     }
 }
