@@ -1,27 +1,23 @@
+import java.util.Optional;
+
 public class QuantityDiscount extends BaseDiscount{
-    public QuantityDiscount(Discount nextDiscount) {
+    public QuantityDiscount(Optional<Discount> nextDiscount) {
         super(nextDiscount);
     }
 
     @Override
     protected boolean isApplicable(Product product) {
-        return product.quantity() > 10;
+        return product.quantity() >= 10;
     }
 
     @Override
     protected double calculateDiscount(Product product) {
-        return product.quantity() * 0.4;
-    }
-
-    @Override
-    public double apply(Product product) {
-
-        return 0;
+        return product.price() * 0.4;
     }
 
     @Override
     public String getDescription(Product product) {
 
-        return "Quantity Discount";
+        return "40% Quantity Discount";
     }
 }

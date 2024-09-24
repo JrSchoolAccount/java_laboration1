@@ -1,7 +1,9 @@
-public abstract class BaseDiscount implements Discount {
-    protected Discount nextDiscount;
+import java.util.Optional;
 
-    public BaseDiscount(Discount nextDiscount) {
+public abstract class BaseDiscount implements Discount {
+    protected Optional<Discount> nextDiscount;
+
+    public BaseDiscount(Optional<Discount> nextDiscount) {
         this.nextDiscount = nextDiscount;
     }
 
@@ -11,23 +13,17 @@ public abstract class BaseDiscount implements Discount {
 
     @Override
     public double apply(Product product) {
+        double discount = 0;
+
         if (isApplicable(product)) {
-            return calculateDiscount(product);
+           discount = calculateDiscount(product);
         }
-        if (nextDiscount != null) {
-            return nextDiscount.apply(product);
-        }
-        return 0;
+        return discount + nextDiscount.map(d -> d.apply(product)).orElse(0.0);
     }
 
     @Override
     public String getDescription(Product product) {
-        if (isApplicable(product)) {
-            return "Discount: " + calculateDiscount(product);
-        }
-        if (nextDiscount != null) {
-            return nextDiscount.getDescription(product);
-        }
-        return "No Discount";
+        return null;
     }
+
 }

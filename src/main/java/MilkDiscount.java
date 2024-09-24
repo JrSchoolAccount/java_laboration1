@@ -1,5 +1,7 @@
+import java.util.Optional;
+
 public class MilkDiscount extends BaseDiscount{
-    public MilkDiscount(Discount nextDiscount) {
+    public MilkDiscount(Optional<Discount> nextDiscount) {
         super(nextDiscount);
     }
 
@@ -13,15 +15,10 @@ public class MilkDiscount extends BaseDiscount{
         return product.price() * 0.05;
     }
 
-    @Override
-    public double apply(Product product) {
-
-        return 0;
-    }
 
     @Override
     public String getDescription(Product product) {
 
-        return "Milk Discount";
+        return "5% Milk Discount";
     }
 }
