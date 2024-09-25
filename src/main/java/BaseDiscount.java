@@ -9,7 +9,7 @@ public abstract class BaseDiscount implements Discount {
 
     protected abstract boolean isApplicable(Product product);
     protected abstract double calculateDiscount(Product product);
-
+    protected abstract String getDiscountDescription(Product product);
 
     @Override
     public double apply(Product product) {
@@ -23,7 +23,14 @@ public abstract class BaseDiscount implements Discount {
 
     @Override
     public String getDescription(Product product) {
-        return "";
+        String currentDescription = isApplicable(product) ? getDiscountDescription(product) : "";
+        String nextDescription = nextDiscount.map(d -> d.getDescription(product)).orElse("");
+
+        if (!currentDescription.isEmpty() && !nextDescription.isEmpty()) {
+            return currentDescription + " + " + nextDescription;
+        }
+
+        return currentDescription.isEmpty() ? nextDescription : currentDescription;
     }
 
 }
