@@ -18,7 +18,8 @@ public abstract class BaseDiscount implements Discount {
         if (isApplicable(product)) {
            discount = calculateDiscount(product);
         }
-        return discount + nextDiscount.map(d -> d.apply(product)).orElse(0.0);
+        double totalDiscount = discount + nextDiscount.map(d -> d.apply(product)).orElse(0.0);
+        return Math.floor(totalDiscount * 100) / 100;
     }
 
     @Override
