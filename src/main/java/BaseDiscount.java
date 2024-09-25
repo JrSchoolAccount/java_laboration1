@@ -23,7 +23,7 @@ public abstract class BaseDiscount implements Discount {
 
     @Override
     public String getDescription(Product product) {
-        return null;
+        return "";
     }
 
 }
