@@ -1,3 +1,7 @@
+package discounts;
+
+import product.Product;
+
 import java.util.Optional;
 
 public abstract class BaseDiscount implements Discount {
@@ -19,6 +23,7 @@ public abstract class BaseDiscount implements Discount {
            discount = calculateDiscount(product);
         }
         double totalDiscount = discount + nextDiscount.map(d -> d.apply(product)).orElse(0.0);
+
         return Math.floor(totalDiscount * 100) / 100;
     }
 

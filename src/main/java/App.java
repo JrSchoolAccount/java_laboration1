@@ -1,3 +1,10 @@
+import discounts.Discount;
+import discounts.FridayDiscount;
+import discounts.MilkDiscount;
+import discounts.QuantityDiscount;
+import product.Product;
+import product.ProductType;
+
 import java.util.Optional;
 
 public class App {
@@ -21,16 +28,21 @@ public class App {
     private static void applyDiscount(Product product, Discount discount) {
         double totalDiscount = discount.apply(product);
         double price = product.price();
-        double discountedPrice = Math.floor((price - totalDiscount) * 100) / 100;
+        double pricePerUnit = Math.floor((price - totalDiscount) * 100) / 100;
         int quantity = product.quantity();
-        String appliedDiscounts = discount.getDescription(product);
-        double totalPrice = Math.floor((quantity * discountedPrice) * 100) / 100;
+        String appliedDiscountsText = discount.getDescription(product);
+        double totalPrice = Math.floor((quantity * pricePerUnit) * 100) / 100;
 
-        System.out.println("\nProduct: " + product.name() +
-                "\nQuantity: " + quantity +
-                "\nPrice per unit: " + discountedPrice + "kr" +
-                "\nDiscount per unit: " + totalDiscount + "kr" +
-                "\nApplied discounts: "+ appliedDiscounts +
-                "\nTotal : " + totalPrice + " kr");
-    }
+        String output = String.format(
+                "\nproduct.Product: %s\nQuantity: %d\nPrice per unit: %.2f kr\nDiscount per unit: %.2f kr\nApplied discounts: %s\nTotal: %.2f kr",
+                product.name(),
+                quantity,
+                pricePerUnit,
+                totalDiscount,
+                appliedDiscountsText,
+                totalPrice
+        );
+
+        System.out.println(output);
+}
 }
