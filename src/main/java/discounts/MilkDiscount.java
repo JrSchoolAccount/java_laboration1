@@ -1,3 +1,8 @@
+package discounts;
+
+import product.Product;
+import product.ProductType;
+
 import java.util.Optional;
 
 public class MilkDiscount extends BaseDiscount{

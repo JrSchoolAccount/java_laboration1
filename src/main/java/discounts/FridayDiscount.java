@@ -1,3 +1,7 @@
+package discounts;
+
+import product.Product;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Optional;

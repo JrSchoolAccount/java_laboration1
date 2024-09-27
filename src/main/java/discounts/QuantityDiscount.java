@@ -1,3 +1,7 @@
+package discounts;
+
+import product.Product;
+
 import java.util.Optional;
 
 public class QuantityDiscount extends BaseDiscount{
